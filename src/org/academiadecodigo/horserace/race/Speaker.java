@@ -1,13 +1,16 @@
 package org.academiadecodigo.horserace.race;
 
+import org.academiadecodigo.horserace.Display;
 import org.academiadecodigo.horserace.horse.Horse;
 
-public class Speaker {
+public class Speaker implements Display {
+
 
     private Horse previousLeadingHorse;
 
 
-    public void comment(Horse[] horses) {
+    @Override
+    public void render(Horse[] horses) {
 
         Horse leadingHorse = findLeadingHorse(horses);
 
@@ -18,6 +21,7 @@ public class Speaker {
 
         previousLeadingHorse = leadingHorse;
     }
+
 
     public void announceWinner(Horse winner) {
 
@@ -41,5 +45,6 @@ public class Speaker {
 
         return leadingHorse;
     }
+
 
 }

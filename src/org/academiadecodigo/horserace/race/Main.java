@@ -1,22 +1,19 @@
 package org.academiadecodigo.horserace.race;
 
-import org.academiadecodigo.horserace.horse.Drunk;
-import org.academiadecodigo.horserace.horse.Fast;
-import org.academiadecodigo.horserace.horse.Horse;
-import org.academiadecodigo.horserace.horse.Slow;
-import org.academiadecodigo.horserace.race.Arena;
+
+import org.academiadecodigo.horserace.Display;
 
 public class Main {
 
     public static void main(String[] args) {
 
-
-
-
         Arena arena = new Arena(4, 100);
+
+        Display display = new Speaker();
+
+        arena.setDisplay(display);
 
         arena.init();
     }
-
 
 }

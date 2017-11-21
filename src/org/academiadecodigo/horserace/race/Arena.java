@@ -1,16 +1,15 @@
 package org.academiadecodigo.horserace.race;
 
-import org.academiadecodigo.horserace.horse.Drunk;
-import org.academiadecodigo.horserace.horse.Fast;
-import org.academiadecodigo.horserace.horse.Horse;
-import org.academiadecodigo.horserace.horse.Slow;
+import org.academiadecodigo.horserace.Display;
+import org.academiadecodigo.horserace.horse.*;
 
 public class Arena {
 
     private int trackDistance;
     private int numberOfTracks;
     private Horse[] horses;
-    private Speaker speaker;
+
+    private Display display;
 
 
     public Arena(int numberOfTracks, int trackDistance) {
@@ -18,22 +17,23 @@ public class Arena {
         this.numberOfTracks = numberOfTracks;
         this.trackDistance = trackDistance;
 
-        speaker = new Speaker();
+        display = new Speaker();
     }
 
 
     public void init() {
 
-        createRaceHorces(numberOfTracks);
+        horses = HorseFactory.createRaceHorces(numberOfTracks);
 
         while (noWinner()) {
 
             race();
-            speaker.comment(horses);
+
+            display.render(horses);
         }
 
         // Horse winner = this.getWinner();
-        speaker.announceWinner(getWinner());
+        display.announceWinner(getWinner());
 
     }
 
@@ -77,38 +77,8 @@ public class Arena {
         return true;
     }
 
-    public Horse[] createRaceHorces(int arenaTracks) {
 
-        String[] championshipHorses = {"Pizza", "Beer", "Sócio", "Bull Balls", "Dirty Harry", "Apache", "BBQ", "Billy the Kid",
-                "HangMan", "Jalapeño", "Rambo", "Xtreme", "Victory"};
-
-        horses = new Horse[arenaTracks];
-
-
-        for (int i = 0; i < arenaTracks; i++) {
-
-            double randomHorseType = Math.random();
-
-            if (randomHorseType < 0.33) {
-
-                horses[i] = new Fast(championshipHorses[i]);
-                System.out.println(horses[i].getName() + " is a Fast horse");
-
-            } else if (randomHorseType < 0.66) {
-
-                horses[i] = new Slow(championshipHorses[i]);
-                System.out.println(horses[i].getName() + " is a Slow horse");
-
-            } else {
-
-                horses[i] = new Drunk(championshipHorses[i]);
-                System.out.println(horses[i].getName() + " is a Drunk horse");
-            }
-
-            horses[i].setTrack(i);
-        }
-
-        return horses;
+    public void setDisplay(Display display) {
+        this.display = display;
     }
-
 }
