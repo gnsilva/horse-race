@@ -13,22 +13,23 @@ public class VisualSpeaker implements Display {
 
         String upperBorder = "***************************************************\n";
         String tableHeader = "*  Track  ||   Horse Type   ||     Horse Name     *\n";
-        String middleBoard = "*-------------------------------------------------*\n";
+        String middleBorder = "*-------------------------------------------------*\n";
         String horseDescription = upperBorder + tableHeader;
 
 
         for (Horse horse : horses) {
-            horseDescription += middleBoard;
+
+            horseDescription += middleBorder;
             horseDescription += formatString("*    " + horse.getTrack(), 10) +
                     formatString("||      " + horse.getClass().getSimpleName(), 18) +
                     formatString("||    " + horse.getName(), 22);
-
 
             horseDescription += "*\n";
         }
 
         System.out.println(horseDescription + upperBorder);
     }
+
 
     private String formatString(String string, int size) {
 
@@ -44,11 +45,11 @@ public class VisualSpeaker implements Display {
     public void render(Horse[] horses) {
 
         Horse leadingHorse = findLeadingHorse(horses);
-        String arrow = "------------------------------>>>>>";
+        String arrow = "-------------------------------->>>>>";
 
         if (!leadingHorse.equals(previousLeadingHorse)) {
 
-            System.out.println("\n" + formatString(leadingHorse.getName() + " is leading the race!", 30) + ">>>>>\n" + arrow);
+            System.out.println("\n" + formatString(leadingHorse.getName() + " is leading the race!", 32) + ">>>>>\n" + arrow);
         }
 
         previousLeadingHorse = leadingHorse;
@@ -57,8 +58,8 @@ public class VisualSpeaker implements Display {
 
     public void finalRender(Horse winner) {
 
-        String upperBorder = "*==================================*\n";
-        System.out.println("\n" + upperBorder + formatString("*    " + winner.getName() + " wins the race!!", 35) + "*\n" + upperBorder);
+        String upperBorder = "*===================================*\n";
+        System.out.println("\n" + upperBorder + formatString("*  ..and " + winner.getName() + " is the winner!!", 36) + "*\n" + upperBorder);
     }
 
 
