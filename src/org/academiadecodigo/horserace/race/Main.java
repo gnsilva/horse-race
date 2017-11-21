@@ -1,7 +1,9 @@
 package org.academiadecodigo.horserace.race;
 
 
-import org.academiadecodigo.horserace.Display;
+import org.academiadecodigo.horserace.display.Display;
+import org.academiadecodigo.horserace.display.Speaker;
+import org.academiadecodigo.horserace.display.VisualSpeaker;
 
 public class Main {
 
@@ -9,7 +11,7 @@ public class Main {
 
         Arena arena = new Arena(4, 100);
 
-        Display display = new Speaker();
+        Display display = new VisualSpeaker();
 
         arena.setDisplay(display);
 

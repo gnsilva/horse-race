@@ -1,6 +1,6 @@
 package org.academiadecodigo.horserace.race;
 
-import org.academiadecodigo.horserace.Display;
+import org.academiadecodigo.horserace.display.Display;
 import org.academiadecodigo.horserace.horse.*;
 
 public class Arena {
@@ -17,13 +17,14 @@ public class Arena {
         this.numberOfTracks = numberOfTracks;
         this.trackDistance = trackDistance;
 
-        display = new Speaker();
     }
 
 
     public void init() {
 
         horses = HorseFactory.createRaceHorces(numberOfTracks);
+
+        display.initialRender(horses);
 
         while (noWinner()) {
 
@@ -33,9 +34,9 @@ public class Arena {
         }
 
         // Horse winner = this.getWinner();
-        display.announceWinner(getWinner());
-
+        display.finalRender(getWinner());
     }
+
 
     private Horse getWinner() {
 
@@ -54,6 +55,7 @@ public class Arena {
         return winner;
     }
 
+
     private void race() {
 
         for (Horse horse : horses) {
@@ -64,7 +66,7 @@ public class Arena {
     }
 
 
-    public boolean noWinner() {
+    private boolean noWinner() {
 
         for (Horse horse : horses) {
 

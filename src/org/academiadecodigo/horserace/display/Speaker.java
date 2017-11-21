@@ -1,6 +1,5 @@
-package org.academiadecodigo.horserace.race;
+package org.academiadecodigo.horserace.display;
 
-import org.academiadecodigo.horserace.Display;
 import org.academiadecodigo.horserace.horse.Horse;
 
 public class Speaker implements Display {
@@ -10,20 +9,30 @@ public class Speaker implements Display {
 
 
     @Override
+    public void initialRender(Horse[] horses) {
+
+        for (Horse horse : horses) {
+
+            System.out.println("On track " + horse.getTrack() + " runs a " + horse.getClass().getSimpleName() + " horse named " + horse.getName());
+        }
+    }
+
+
+    @Override
     public void render(Horse[] horses) {
 
         Horse leadingHorse = findLeadingHorse(horses);
 
         if (!leadingHorse.equals(previousLeadingHorse)) {
 
-            System.out.println("\n" + leadingHorse.getName() + " in track " + leadingHorse.getTrack() + " is leading the race!");
+            System.out.println("\n" + leadingHorse.getName() + " is leading the race!");
         }
 
         previousLeadingHorse = leadingHorse;
     }
 
 
-    public void announceWinner(Horse winner) {
+    public void finalRender(Horse winner) {
 
         System.out.println("\n" + winner.getName() + " wins the race!!");
     }
@@ -48,3 +57,4 @@ public class Speaker implements Display {
 
 
 }
+
