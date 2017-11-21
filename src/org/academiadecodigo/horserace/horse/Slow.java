@@ -1,6 +1,8 @@
 package org.academiadecodigo.horserace.horse;
 
 
+import static org.academiadecodigo.horserace.constants.Constants.*;
+
 public class Slow extends Horse {
 
 
@@ -11,17 +13,17 @@ public class Slow extends Horse {
     @Override
     public void run() {
 
-        if (distance < 20) {
+        if (distance < SLOW_INITIAL_SECTION_DISTANCE) {
 
-            distance += 1;
+            distance += SLOW_INITIAL_MIN_SPEED + Math.random() * (SLOW_INITIAL_MAX_SPEED - SLOW_INITIAL_MIN_SPEED);
 
-        } else if (distance < 70) {
+        } else if (distance < SLOW_CRUISE_SECTION_DISTANCE) {
 
-            distance += 3;
+            distance += SLOW_CRUISE_MIN_SPEED + Math.random() * (SLOW_CRUISE_MAX_SPEED - SLOW_CRUISE_MIN_SPEED);
 
         } else {
 
-            distance += 1;
+            distance += SLOW_FINAL_MIN_SPEED + Math.random() * (SLOW_FINAL_MAX_SPEED - SLOW_FINAL_MIN_SPEED);
         }
     }
 

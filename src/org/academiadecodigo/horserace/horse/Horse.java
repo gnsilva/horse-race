@@ -25,10 +25,6 @@ public abstract class Horse {
         return distance;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
     public int getTrack() {
         return track;
     }

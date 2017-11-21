@@ -32,8 +32,8 @@ public class Arena {
             speaker.comment(horses);
         }
 
-        Horse winner = this.getWinner();
-        speaker.announceWinner(winner);
+        // Horse winner = this.getWinner();
+        speaker.announceWinner(getWinner());
 
     }
 
@@ -42,12 +42,12 @@ public class Arena {
         Horse winner = null;
         double longerDistance = 0;
 
-        for (int i = 0; i < horses.length; i++) {
+        for (Horse horse : horses) {
 
-            if (horses[i].getDistance() > longerDistance) {
+            if (horse.getDistance() > longerDistance) {
 
-                longerDistance = horses[i].getDistance();
-                winner = horses[i];
+                longerDistance = horse.getDistance();
+                winner = horse;
             }
         }
 
@@ -92,14 +92,17 @@ public class Arena {
             if (randomHorseType < 0.33) {
 
                 horses[i] = new Fast(championshipHorses[i]);
+                System.out.println(horses[i].getName() + " is a Fast horse");
 
-            } else if (randomHorseType > 0.66) {
+            } else if (randomHorseType < 0.66) {
 
                 horses[i] = new Slow(championshipHorses[i]);
+                System.out.println(horses[i].getName() + " is a Slow horse");
 
             } else {
 
                 horses[i] = new Drunk(championshipHorses[i]);
+                System.out.println(horses[i].getName() + " is a Drunk horse");
             }
 
             horses[i].setTrack(i);

@@ -13,7 +13,7 @@ public class Speaker {
 
         if (!leadingHorse.equals(previousLeadingHorse)) {
 
-            System.out.println(leadingHorse.getName() + " is leading the race! \n");
+            System.out.println("\n" + leadingHorse.getName() + " in track " + leadingHorse.getTrack() + " is leading the race!");
         }
 
         previousLeadingHorse = leadingHorse;
@@ -21,7 +21,7 @@ public class Speaker {
 
     public void announceWinner(Horse winner) {
 
-        System.out.println(winner.getName() + " wins the race!!");
+        System.out.println("\n" + winner.getName() + " wins the race!!");
     }
 
 
