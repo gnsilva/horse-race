@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Arena arena = new Arena(4, 100);
+        Arena arena = new Arena(5, 100);
 
         Display display = new VisualSpeaker();
 
