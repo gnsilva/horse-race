@@ -16,7 +16,6 @@ public class Arena {
 
         this.numberOfTracks = numberOfTracks;
         this.trackDistance = trackDistance;
-
     }
 
 
