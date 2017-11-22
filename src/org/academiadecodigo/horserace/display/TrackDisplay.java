@@ -2,10 +2,7 @@ package org.academiadecodigo.horserace.display;
 
 import org.academiadecodigo.horserace.horse.Horse;
 
-public class VisualSpeaker implements Display {
-
-
-    private Horse previousLeadingHorse;
+public class TrackDisplay implements Display {
 
 
     @Override
@@ -44,15 +41,29 @@ public class VisualSpeaker implements Display {
     @Override
     public void render(Horse[] horses) {
 
-        Horse leadingHorse = findLeadingHorse(horses);
-        String arrow = "-------------------------------->>>>>";
+        String trackBorder = "+----------------------------------------------------------------------------------------------------------------------------------------------------+\n";
+        String horseLane = "                                                                                                                                                      \n";
+        String total = "******************************************************************************************************************************************************\n";
 
-        if (!leadingHorse.equals(previousLeadingHorse)) {
-
-            System.out.println("\n" + formatString(leadingHorse.getName() + " is leading the race!", 32) + ">>>>>\n" + arrow);
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-        previousLeadingHorse = leadingHorse;
+        for (Horse horse : horses) {
+
+            int pos = (int) horse.getDistance() * 150 / 100;
+            pos = pos > 150 ? 150 : pos;
+
+            String backSection = horseLane.substring(0, pos - 1) + "C";
+            String aheadSection = horseLane.substring(pos);
+
+            total += trackBorder + backSection + aheadSection;
+
+        }
+
+        System.out.println(total);
     }
 
     @Override

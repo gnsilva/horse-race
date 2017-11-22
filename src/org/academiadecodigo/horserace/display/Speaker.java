@@ -31,7 +31,7 @@ public class Speaker implements Display {
         previousLeadingHorse = leadingHorse;
     }
 
-
+    @Override
     public void finalRender(Horse winner) {
 
         System.out.println("\n" + winner.getName() + " wins the race!!");
