@@ -5,6 +5,7 @@ import org.academiadecodigo.horserace.horse.Horse;
 public class TrackDisplay implements Display {
 
 
+
     @Override
     public void initialRender(Horse[] horses) {
 

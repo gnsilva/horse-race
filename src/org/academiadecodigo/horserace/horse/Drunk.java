@@ -26,4 +26,8 @@ public class Drunk extends Horse {
         }
     }
 
+    @Override
+    public String toString() {
+        return getName().substring(0,1);
+    }
 }

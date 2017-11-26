@@ -27,4 +27,9 @@ public class Slow extends Horse {
         }
     }
 
+    @Override
+    public String toString() {
+        return getName().substring(0,1);
+    }
+
 }

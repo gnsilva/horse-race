@@ -24,6 +24,7 @@ public class Arena {
         horses = HorseFactory.createRaceHorces(numberOfTracks);
 
         display.initialRender(horses);
+
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
