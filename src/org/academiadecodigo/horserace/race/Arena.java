@@ -36,8 +36,6 @@ public class Arena {
             race();
 
             display.render(horses);
-
-
         }
 
         // Horse winner = this.getWinner();

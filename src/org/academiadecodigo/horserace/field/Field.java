@@ -51,6 +51,22 @@ public final class Field {
 
     }
 
+    /*public static void drawRaceBoard(Horse[]horses){
+
+        String upperBorder = "***************************************************\n";
+        String tableHeader = "*  Track  ||   Horse Type   ||     Horse Name     *\n";
+        String middleBorder = "*-------------------------------------------------*\n";
+        String horseDescription = upperBorder + tableHeader;
+
+        for (int i = 0; i < tableHeader.length(); i++) {
+
+            screen.putString(i + 5, 3, tableHeader.substring(i, i + 1), Terminal.Color.WHITE, Terminal.Color.BLACK);
+            System.out.println(i);
+        }
+
+    }*/
+
+
     /**
      * Displays a group of horses in the screen
      *
@@ -60,27 +76,39 @@ public final class Field {
 
         screen.clear();
 
+        rowTrack = 10;
+
         for (Horse horse : horses) {
 
-            rowTrack = horse.getTrack() + 10;
-
-            screenWriter.drawString((int) horse.getDistance(), rowTrack, horse.toString());
-
-            rowTrack += 3;
+            screenWriter.drawString((int) horse.getDistance(), horse.getTrack() + rowTrack, horse.toString());
+            rowTrack += 2;
         }
 
         screen.refresh();
     }
 
-    public static void drawRace(Horse horse) {
+    public static void drawRace(Horse[] horses) {
 
-        screenWriter.drawString((int) horse.getDistance(), rowTrack, horse.toString());
+        screen.clear();
+
+        rowTrack = 10;
+
+        for (Horse horse : horses) {
+
+            screenWriter.drawString((int) horse.getDistance(), horse.getTrack() + rowTrack, horse.toString());
+            rowTrack += 2;
+        }
+
+        screen.refresh();
     }
 
     public static void drawWinner(Horse horse) {
 
-        screen.putString((int)horse.getDistance(), rowTrack, horse.toString(), Terminal.Color.WHITE, Terminal.Color.RED, ScreenCharacterStyle.Blinking);
+        screen.clear();
 
+        screen.putString((int)horse.getDistance(), horse.getTrack() * 3 + 10, horse.toString(), Terminal.Color.WHITE, Terminal.Color.RED, ScreenCharacterStyle.Blinking);
+
+        screen.refresh();
     }
 
 }
