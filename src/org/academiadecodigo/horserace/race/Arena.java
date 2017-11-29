@@ -8,6 +8,7 @@ public class Arena {
     private int trackDistance;
     private int numberOfTracks;
     private Horse[] horses;
+    private Horse[] finalRacePositions;
 
     private Display display;
 
@@ -22,42 +23,55 @@ public class Arena {
     public void init() {
 
         horses = HorseFactory.createRaceHorces(numberOfTracks);
+        finalRacePositions = new Horse[numberOfTracks];
 
         display.initialRender(horses);
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        while (noWinner()) {
+        while (!lastHorseHasFinished()) {
 
             race();
 
             display.render(horses);
+
         }
 
         // Horse winner = this.getWinner();
-        display.finalRender(getWinner());
+        display.finalRender(getFirstPlace());
     }
 
 
-    private Horse getWinner() {
+    private Horse getFirstPlace() {
 
-        Horse winner = null;
-        double longerDistance = 0;
+        Horse firstPlace = null;
 
         for (Horse horse : horses) {
 
-            if (horse.getDistance() > longerDistance) {
+            if (horse.getDistance() >= trackDistance) {
 
-                longerDistance = horse.getDistance();
-                winner = horse;
+                firstPlace = horse;
             }
         }
 
-        return winner;
+        return firstPlace;
+    }
+
+
+    public boolean hasFinished(Horse horse) {
+
+        for (int i = 0; i < finalRacePositions.length; i++) {
+
+            if (horse.equals(finalRacePositions[i])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
@@ -66,7 +80,12 @@ public class Arena {
         for (Horse horse : horses) {
 
             horse.run();
-            //System.out.println("Track " + horse.getTrack() + " - " + horse.getName() + " distance is " + horse.getDistance());
+
+            if (horse.getDistance() >= trackDistance) {
+
+                horse.setDistance(trackDistance);
+            }
+            System.out.println("Track " + horse.getTrack() + " - " + horse.getName() + " distance is " + horse.getDistance());
         }
     }
 
@@ -82,6 +101,20 @@ public class Arena {
         }
 
         return true;
+    }
+
+    private boolean lastHorseHasFinished() {
+
+        int horsesFinished = 0;
+
+        for (Horse horse : horses) {
+
+            if (horse.getDistance() >= trackDistance) {
+                horsesFinished += 1;
+            }
+        }
+
+        return horsesFinished >= horses.length;
     }
 
 

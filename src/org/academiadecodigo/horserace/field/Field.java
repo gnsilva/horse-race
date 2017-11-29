@@ -45,26 +45,9 @@ public final class Field {
         screenWriter = new ScreenWriter(screen);
         screenWriter.setBackgroundColor(Terminal.Color.BLUE);
         screenWriter.setForegroundColor(Terminal.Color.WHITE);
-        System.out.println("init screen");
         screen.startScreen();
-        System.out.println("init startscreen");
-
     }
 
-    /*public static void drawRaceBoard(Horse[]horses){
-
-        String upperBorder = "***************************************************\n";
-        String tableHeader = "*  Track  ||   Horse Type   ||     Horse Name     *\n";
-        String middleBorder = "*-------------------------------------------------*\n";
-        String horseDescription = upperBorder + tableHeader;
-
-        for (int i = 0; i < tableHeader.length(); i++) {
-
-            screen.putString(i + 5, 3, tableHeader.substring(i, i + 1), Terminal.Color.WHITE, Terminal.Color.BLACK);
-            System.out.println(i);
-        }
-
-    }*/
 
 
     /**
@@ -106,7 +89,7 @@ public final class Field {
 
         screen.clear();
 
-        screen.putString((int)horse.getDistance(), horse.getTrack() * 3 + 10, horse.toString(), Terminal.Color.WHITE, Terminal.Color.RED, ScreenCharacterStyle.Blinking);
+        screen.putString((int) horse.getDistance(), horse.getTrack() * 3 + 10, horse.toString(), Terminal.Color.WHITE, Terminal.Color.YELLOW, ScreenCharacterStyle.Blinking);
 
         screen.refresh();
     }

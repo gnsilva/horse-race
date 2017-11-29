@@ -9,17 +9,10 @@ public class DisplayLanterna implements Display {
     @Override
     public void initialRender(Horse[] horses) {
 
-        System.out.println("init 1");
 
         Field.init(100, 30);
 
-        System.out.println("init 2");
-
         Field.draw(horses);
-
-        System.out.println("init 3");
-
-        //Field.drawRaceBoard(horses);
     }
 
     @Override
