@@ -37,7 +37,7 @@ public final class Field {
         // Set field size
         Field.width = width;
         Field.height = height;
-        screen.getTerminal().setCursorVisible(false); // Not Working
+        screen.setCursorPosition(null);
         screen.getTerminal().getTerminalSize().setColumns(width);
         screen.getTerminal().getTerminalSize().setRows(height);
 
@@ -47,7 +47,6 @@ public final class Field {
         screenWriter.setForegroundColor(Terminal.Color.WHITE);
         screen.startScreen();
     }
-
 
 
     /**
@@ -70,6 +69,7 @@ public final class Field {
         screen.refresh();
     }
 
+
     public static void drawRace(Horse[] horses) {
 
         screen.clear();
@@ -85,20 +85,19 @@ public final class Field {
         screen.refresh();
     }
 
+
     public static void drawFinalPositions(Horse[] horses) {
 
         screen.clear();
 
-        screen.putString((int) horses[0].getDistance(), horses[0].getTrack() * 3 + 10, horses[0].toString(), Terminal.Color.WHITE, Terminal.Color.YELLOW, ScreenCharacterStyle.Blinking);
-        screen.putString((int) horses[1].getDistance(), horses[1].getTrack() * 3 + 10, horses[1].toString(), Terminal.Color.WHITE, Terminal.Color.GREEN, ScreenCharacterStyle.Blinking);
-        screen.putString((int) horses[2].getDistance(), horses[2].getTrack() * 3 + 10, horses[2].toString(), Terminal.Color.WHITE, Terminal.Color.MAGENTA, ScreenCharacterStyle.Blinking);
+        screen.putString((int) horses[0].getDistance(), horses[0].getTrack() * 3 + 10, "1", Terminal.Color.WHITE, Terminal.Color.YELLOW, ScreenCharacterStyle.Blinking);
+        screen.putString((int) horses[1].getDistance(), horses[1].getTrack() * 3 + 10, "2", Terminal.Color.WHITE, Terminal.Color.GREEN, ScreenCharacterStyle.Blinking);
+        screen.putString((int) horses[2].getDistance(), horses[2].getTrack() * 3 + 10, "3", Terminal.Color.WHITE, Terminal.Color.MAGENTA, ScreenCharacterStyle.Blinking);
 
         for (int i = 3; i < horses.length; i++) {
 
             screenWriter.drawString((int) horses[i].getDistance(), horses[i].getTrack() * 3 + 10, horses[i].toString());
-
-            }
-
+        }
 
         screen.refresh();
     }

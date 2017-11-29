@@ -10,7 +10,6 @@ public abstract class Horse {
     public Horse(String name) {
 
         this.name = name;
-
     }
 
 

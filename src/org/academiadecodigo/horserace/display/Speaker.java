@@ -31,14 +31,15 @@ public class Speaker implements Display {
         previousLeadingHorse = leadingHorse;
     }
 
+
     @Override
     public void finalRender(Horse[] finalRacePositions) {
 
-        System.out.println("\n" + finalRacePositions[0].getName() + " wins the race!!");
+        System.out.println("\n" + finalRacePositions[0].getName() + " wins the race!! \n");
 
         for (int i = 1; i < finalRacePositions.length; i++) {
 
-            System.out.println("\n" + finalRacePositions[i].getName() + " ends in " + (i + 1) + " position.");
+            System.out.println((i + 1) + " place: " + finalRacePositions[i].getName());
         }
     }
 

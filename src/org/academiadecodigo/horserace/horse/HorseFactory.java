@@ -3,7 +3,7 @@ package org.academiadecodigo.horserace.horse;
 public class HorseFactory {
 
 
-    public static Horse[] createRaceHorces(int arenaTracks) {
+    public static Horse[] createRaceHorses(int arenaTracks) {
 
         String[] championshipHorses = {"Pizza", "Beer", "Sócio", "Bull Balls", "Dirty Harry", "Apache", "BBQ", "Billy the Kid",
                 "HangMan", "Jalapeño", "Rambo", "Xtreme", "Victory"};

@@ -14,6 +14,7 @@ public class VisualSpeaker implements Display {
         String upperBorder = "***************************************************\n";
         String tableHeader = "*  Track  ||   Horse Type   ||     Horse Name     *\n";
         String middleBorder = "*-------------------------------------------------*\n";
+
         String horseDescription = upperBorder + tableHeader;
 
 
@@ -41,6 +42,7 @@ public class VisualSpeaker implements Display {
         return string;
     }
 
+
     @Override
     public void render(Horse[] horses) {
 
@@ -55,11 +57,19 @@ public class VisualSpeaker implements Display {
         previousLeadingHorse = leadingHorse;
     }
 
+
     @Override
     public void finalRender(Horse[] finalRacePositions) {
 
-        String upperBorder = "*===================================*\n";
-        System.out.println("\n" + upperBorder + formatString("*  ..and " + finalRacePositions[0].getName() + " is the winner!!", 36) + "*\n" + upperBorder);
+        String middleBorder = "*-----------------------------------*";
+        String upperBorder = "*===================================*";
+
+        System.out.println("\n" + upperBorder + "\n" + formatString("*  ..and " + finalRacePositions[0].getName() + " is the winner!!", 36) + "*\n" + upperBorder);
+
+        for (int i = 1; i < finalRacePositions.length; i++) {
+
+            System.out.println(formatString("*  " + (i + 1) + " place: " + finalRacePositions[i].getName(), 36) + "*\n" + middleBorder);
+        }
     }
 
 

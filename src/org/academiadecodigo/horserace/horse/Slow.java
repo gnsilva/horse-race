@@ -10,6 +10,7 @@ public class Slow extends Horse {
         super(name);
     }
 
+
     @Override
     public void run() {
 
@@ -27,9 +28,11 @@ public class Slow extends Horse {
         }
     }
 
+
     @Override
     public String toString() {
-        return getName().substring(0,1);
+
+        return getName().substring(0, 1);
     }
 
 }

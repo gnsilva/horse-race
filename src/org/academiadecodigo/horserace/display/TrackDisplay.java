@@ -38,6 +38,7 @@ public class TrackDisplay implements Display {
         return string;
     }
 
+
     @Override
     public void render(Horse[] horses) {
 
@@ -66,35 +67,19 @@ public class TrackDisplay implements Display {
         System.out.println(total);
     }
 
+
     @Override
     public void finalRender(Horse[] finalRacePositions) {
 
-        String upperBorder = "*===================================*\n";
-        System.out.println("\n" + upperBorder + formatString("*  ..and " + finalRacePositions[0].getName() + " is the winner!!", 36) + "*\n" + upperBorder);
+        String middleBorder = "*-----------------------------------*";
+        String upperBorder = "*===================================*";
+
+        System.out.println("\n" + upperBorder + "\n" + formatString("*  ..and " + finalRacePositions[0].getName() + " is the winner!!", 36) + "*\n" + upperBorder);
 
         for (int i = 1; i < finalRacePositions.length; i++) {
 
-            System.out.println("\n" + i + " place: " + finalRacePositions[i].getName());
-
+            System.out.println(formatString("*  " + (i + 1) + " place: " + finalRacePositions[i].getName(), 36) + "*\n" + middleBorder);
         }
-    }
-
-
-    private Horse findLeadingHorse(Horse[] horses) {
-
-        Horse leadingHorse = null;
-        double longerDistance = 0;
-
-        for (Horse horse : horses) {
-
-            if (horse.getDistance() > longerDistance) {
-
-                longerDistance = horse.getDistance();
-                leadingHorse = horse;
-            }
-        }
-
-        return leadingHorse;
     }
 
 
