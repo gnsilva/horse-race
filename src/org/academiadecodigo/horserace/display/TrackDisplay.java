@@ -5,7 +5,6 @@ import org.academiadecodigo.horserace.horse.Horse;
 public class TrackDisplay implements Display {
 
 
-
     @Override
     public void initialRender(Horse[] horses) {
 
@@ -68,10 +67,16 @@ public class TrackDisplay implements Display {
     }
 
     @Override
-    public void finalRender(Horse winner) {
+    public void finalRender(Horse[] finalRacePositions) {
 
         String upperBorder = "*===================================*\n";
-        System.out.println("\n" + upperBorder + formatString("*  ..and " + winner.getName() + " is the winner!!", 36) + "*\n" + upperBorder);
+        System.out.println("\n" + upperBorder + formatString("*  ..and " + finalRacePositions[0].getName() + " is the winner!!", 36) + "*\n" + upperBorder);
+
+        for (int i = 1; i < finalRacePositions.length; i++) {
+
+            System.out.println("\n" + i + " place: " + finalRacePositions[i].getName());
+
+        }
     }
 
 

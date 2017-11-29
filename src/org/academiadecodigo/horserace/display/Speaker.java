@@ -32,9 +32,14 @@ public class Speaker implements Display {
     }
 
     @Override
-    public void finalRender(Horse winner) {
+    public void finalRender(Horse[] finalRacePositions) {
 
-        System.out.println("\n" + winner.getName() + " wins the race!!");
+        System.out.println("\n" + finalRacePositions[0].getName() + " wins the race!!");
+
+        for (int i = 1; i < finalRacePositions.length; i++) {
+
+            System.out.println("\n" + finalRacePositions[i].getName() + " ends in " + (i + 1) + " position.");
+        }
     }
 
 

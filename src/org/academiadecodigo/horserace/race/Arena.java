@@ -42,7 +42,7 @@ public class Arena {
         }
 
         // Horse winner = this.getWinner();
-        display.finalRender(getFirstPlace());
+        display.finalRender(finalRacePositions);
     }
 
 
@@ -62,46 +62,39 @@ public class Arena {
     }
 
 
-    public boolean hasFinished(Horse horse) {
-
-        for (int i = 0; i < finalRacePositions.length; i++) {
-
-            if (horse.equals(finalRacePositions[i])) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-
     private void race() {
 
         for (Horse horse : horses) {
+
+            boolean ended = hasFinished(horse);
 
             horse.run();
 
             if (horse.getDistance() >= trackDistance) {
 
-                horse.setDistance(trackDistance);
+                if (!ended) {
+
+                    horse.setDistance(trackDistance);
+
+                    for (int i = 0; i < finalRacePositions.length; i++) {
+
+                        if (finalRacePositions[i] == null) {
+
+                            finalRacePositions[i] = horse;
+                            break;
+                        }
+                    }
+
+                } else {
+
+                    horse.setDistance(trackDistance);
+                }
             }
+
             System.out.println("Track " + horse.getTrack() + " - " + horse.getName() + " distance is " + horse.getDistance());
         }
     }
 
-
-    private boolean noWinner() {
-
-        for (Horse horse : horses) {
-
-            if (horse.getDistance() >= trackDistance) {
-
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     private boolean lastHorseHasFinished() {
 
@@ -109,12 +102,16 @@ public class Arena {
 
         for (Horse horse : horses) {
 
-            if (horse.getDistance() >= trackDistance) {
+            if (hasFinished(horse)) {
                 horsesFinished += 1;
             }
         }
 
         return horsesFinished >= horses.length;
+    }
+
+    private boolean hasFinished(Horse horse) {
+        return horse.getDistance() >= trackDistance;
     }
 
 

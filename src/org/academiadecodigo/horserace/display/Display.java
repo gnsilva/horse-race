@@ -8,5 +8,5 @@ public interface Display {
 
     void render(Horse[] horses);
 
-    void finalRender(Horse winner);
+    void finalRender(Horse[] finalRacePositions);
 }
