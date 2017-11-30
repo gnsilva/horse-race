@@ -59,16 +59,16 @@ public class VisualSpeaker implements Display {
 
 
     @Override
-    public void finalRender(Horse[] finalRacePositions) {
+    public void finalRender(Horse[] finishLine) {
 
         String middleBorder = "*-----------------------------------*";
         String upperBorder = "*===================================*";
 
-        System.out.println("\n" + upperBorder + "\n" + formatString("*  ..and " + finalRacePositions[0].getName() + " is the winner!!", 36) + "*\n" + upperBorder);
+        System.out.println("\n" + upperBorder + "\n" + formatString("*  ..and " + finishLine[0].getName() + " is the winner!!", 36) + "*\n" + upperBorder);
 
-        for (int i = 1; i < finalRacePositions.length; i++) {
+        for (int i = 1; i < finishLine.length; i++) {
 
-            System.out.println(formatString("*  " + (i + 1) + " place: " + finalRacePositions[i].getName(), 36) + "*\n" + middleBorder);
+            System.out.println(formatString("*  " + (i + 1) + " place: " + finishLine[i].getName(), 36) + "*\n" + middleBorder);
         }
     }
 

@@ -28,9 +28,9 @@ public class DisplayLanterna implements Display {
     }
 
     @Override
-    public void finalRender(Horse[] finalRacePositions) {
+    public void finalRender(Horse[] finishLine) {
 
-        Field.drawFinalPositions(finalRacePositions);
+        Field.drawFinalPositions(finishLine);
 
         System.out.println("final render");
 

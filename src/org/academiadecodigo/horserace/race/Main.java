@@ -9,7 +9,7 @@ public class Main {
 
         Arena arena = new Arena(5, 95);
 
-        Display display = new DisplayLanterna();
+        Display display = new VisualSpeaker();
 
         arena.setDisplay(display);
 

@@ -33,13 +33,13 @@ public class Speaker implements Display {
 
 
     @Override
-    public void finalRender(Horse[] finalRacePositions) {
+    public void finalRender(Horse[] finishLine) {
 
-        System.out.println("\n" + finalRacePositions[0].getName() + " wins the race!! \n");
+        System.out.println("\n" + finishLine[0].getName() + " wins the race!! \n");
 
-        for (int i = 1; i < finalRacePositions.length; i++) {
+        for (int i = 1; i < finishLine.length; i++) {
 
-            System.out.println((i + 1) + " place: " + finalRacePositions[i].getName());
+            System.out.println((i + 1) + " place: " + finishLine[i].getName());
         }
     }
 

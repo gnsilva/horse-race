@@ -7,8 +7,9 @@ public class Arena {
 
     private int trackDistance;
     private int numberOfTracks;
+    private boolean ended;
     private Horse[] horses;
-    private Horse[] finalRacePositions;
+    private Horse[] finishLine;
 
     private Display display;
 
@@ -23,7 +24,7 @@ public class Arena {
     public void init() {
 
         horses = HorseFactory.createRaceHorses(numberOfTracks);
-        finalRacePositions = new Horse[numberOfTracks];
+        finishLine = new Horse[numberOfTracks];
 
         display.initialRender(horses);
 
@@ -40,7 +41,7 @@ public class Arena {
             display.render(horses);
         }
 
-        display.finalRender(finalRacePositions);
+        display.finalRender(finishLine);
     }
 
 
@@ -48,26 +49,11 @@ public class Arena {
 
         for (Horse horse : horses) {
 
-            boolean ended = hasFinished(horse);
+            ended = hasFinished(horse);
 
             horse.run();
 
-            if (horse.getDistance() >= trackDistance) {
-
-                horse.setDistance(trackDistance);
-
-                if (!ended) {
-
-                    for (int i = 0; i < finalRacePositions.length; i++) {
-
-                        if (finalRacePositions[i] == null) {
-
-                            finalRacePositions[i] = horse;
-                            break;
-                        }
-                    }
-                }
-            }
+            buildFinishLine(horse);
 
             //System.out.println("Track " + horse.getTrack() + " - " + horse.getName() + " distance is " + horse.getDistance());
         }
@@ -86,6 +72,27 @@ public class Arena {
         }
 
         return horsesFinished >= horses.length;
+    }
+
+
+    private void buildFinishLine(Horse horse) {
+
+        if (horse.getDistance() >= trackDistance) {
+
+            horse.setDistance(trackDistance);
+
+            if (!ended) {
+
+                for (int i = 0; i < finishLine.length; i++) {
+
+                    if (finishLine[i] == null) {
+
+                        finishLine[i] = horse;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
 
