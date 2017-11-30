@@ -54,9 +54,9 @@ public class Arena {
 
             if (horse.getDistance() >= trackDistance) {
 
-                if (!ended) {
+                horse.setDistance(trackDistance);
 
-                    horse.setDistance(trackDistance);
+                if (!ended) {
 
                     for (int i = 0; i < finalRacePositions.length; i++) {
 
@@ -66,10 +66,6 @@ public class Arena {
                             break;
                         }
                     }
-
-                } else {
-
-                    horse.setDistance(trackDistance);
                 }
             }
 
