@@ -47,5 +47,10 @@ public class Constants {
     public static final int DRUNK_INITIAL_SECTION_DISTANCE = 20;
     public static final int DRUNK_CRUISE_SECTION_DISTANCE = 80;
 
+    // FIELD LANTERNA
+
+    public static final int FIRST_TRACK_ROW = 7;
+    public static final int GAP_BETWEEN_TRACKS = 1;
+
 
 }

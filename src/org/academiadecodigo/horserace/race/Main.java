@@ -7,9 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Arena arena = new Arena(5, 95);
+        Arena arena = new Arena(10, 95);
 
-        Display display = new VisualSpeaker();
+        Display display = new DisplayLanterna();
 
         arena.setDisplay(display);
 

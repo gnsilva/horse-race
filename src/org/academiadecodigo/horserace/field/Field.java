@@ -7,6 +7,8 @@ import com.googlecode.lanterna.screen.ScreenWriter;
 import com.googlecode.lanterna.terminal.Terminal;
 import org.academiadecodigo.horserace.horse.Horse;
 
+import static org.academiadecodigo.horserace.constants.Constants.*;
+
 public final class Field {
 
     public static int width;
@@ -58,12 +60,12 @@ public final class Field {
 
         screen.clear();
 
-        rowTrack = 10;
+        rowTrack = FIRST_TRACK_ROW;
 
         for (Horse horse : horses) {
 
             screenWriter.drawString((int) horse.getDistance(), horse.getTrack() + rowTrack, horse.toString());
-            rowTrack += 2;
+            rowTrack += (GAP_BETWEEN_TRACKS);
         }
 
         screen.refresh();
@@ -74,12 +76,12 @@ public final class Field {
 
         screen.clear();
 
-        rowTrack = 10;
+        rowTrack = FIRST_TRACK_ROW;
 
         for (Horse horse : horses) {
 
             screenWriter.drawString((int) horse.getDistance(), horse.getTrack() + rowTrack, horse.toString());
-            rowTrack += 2;
+            rowTrack += (GAP_BETWEEN_TRACKS);
         }
 
         screen.refresh();
@@ -90,13 +92,13 @@ public final class Field {
 
         screen.clear();
 
-        screen.putString((int) horses[0].getDistance(), horses[0].getTrack() * 3 + 10, "1", Terminal.Color.WHITE, Terminal.Color.YELLOW, ScreenCharacterStyle.Blinking);
-        screen.putString((int) horses[1].getDistance(), horses[1].getTrack() * 3 + 10, "2", Terminal.Color.WHITE, Terminal.Color.GREEN, ScreenCharacterStyle.Blinking);
-        screen.putString((int) horses[2].getDistance(), horses[2].getTrack() * 3 + 10, "3", Terminal.Color.WHITE, Terminal.Color.MAGENTA, ScreenCharacterStyle.Blinking);
+        screen.putString((int) horses[0].getDistance(), horses[0].getTrack() * (GAP_BETWEEN_TRACKS + 1) + FIRST_TRACK_ROW, "1", Terminal.Color.WHITE, Terminal.Color.YELLOW, ScreenCharacterStyle.Blinking);
+        screen.putString((int) horses[1].getDistance(), horses[1].getTrack() * (GAP_BETWEEN_TRACKS + 1) + FIRST_TRACK_ROW, "2", Terminal.Color.WHITE, Terminal.Color.GREEN, ScreenCharacterStyle.Blinking);
+        screen.putString((int) horses[2].getDistance(), horses[2].getTrack() * (GAP_BETWEEN_TRACKS + 1) + FIRST_TRACK_ROW, "3", Terminal.Color.WHITE, Terminal.Color.MAGENTA, ScreenCharacterStyle.Blinking);
 
         for (int i = 3; i < horses.length; i++) {
 
-            screenWriter.drawString((int) horses[i].getDistance(), horses[i].getTrack() * 3 + 10, horses[i].toString());
+            screenWriter.drawString((int) horses[i].getDistance(), horses[i].getTrack() * (GAP_BETWEEN_TRACKS + 1) + FIRST_TRACK_ROW, horses[i].toString());
         }
 
         screen.refresh();

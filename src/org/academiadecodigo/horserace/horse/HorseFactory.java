@@ -28,7 +28,7 @@ public class HorseFactory {
                 horses[i] = new Drunk(championshipHorses[i]);
             }
 
-            horses[i].setTrack(i);
+            horses[i].setTrack(i + 1);
         }
 
         return horses;
