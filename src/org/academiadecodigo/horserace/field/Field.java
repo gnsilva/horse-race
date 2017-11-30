@@ -93,8 +93,8 @@ public final class Field {
         screen.clear();
 
         screen.putString((int) horses[0].getDistance(), horses[0].getTrack() * (GAP_BETWEEN_TRACKS + 1) + FIRST_TRACK_ROW, "1", Terminal.Color.WHITE, Terminal.Color.YELLOW, ScreenCharacterStyle.Blinking);
-        screen.putString((int) horses[1].getDistance(), horses[1].getTrack() * (GAP_BETWEEN_TRACKS + 1) + FIRST_TRACK_ROW, "2", Terminal.Color.WHITE, Terminal.Color.GREEN, ScreenCharacterStyle.Blinking);
-        screen.putString((int) horses[2].getDistance(), horses[2].getTrack() * (GAP_BETWEEN_TRACKS + 1) + FIRST_TRACK_ROW, "3", Terminal.Color.WHITE, Terminal.Color.MAGENTA, ScreenCharacterStyle.Blinking);
+        screen.putString((int) horses[1].getDistance(), horses[1].getTrack() * (GAP_BETWEEN_TRACKS + 1) + FIRST_TRACK_ROW, "2", Terminal.Color.BLACK, Terminal.Color.WHITE, ScreenCharacterStyle.Blinking);
+        screen.putString((int) horses[2].getDistance(), horses[2].getTrack() * (GAP_BETWEEN_TRACKS + 1) + FIRST_TRACK_ROW, "3", Terminal.Color.WHITE, Terminal.Color.CYAN, ScreenCharacterStyle.Blinking);
 
         for (int i = 3; i < horses.length; i++) {
 
