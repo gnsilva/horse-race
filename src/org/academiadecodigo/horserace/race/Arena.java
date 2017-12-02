@@ -1,15 +1,16 @@
 package org.academiadecodigo.horserace.race;
 
+import org.academiadecodigo.horserace.bookmaker.BetSystem;
 import org.academiadecodigo.horserace.display.Display;
 import org.academiadecodigo.horserace.horse.*;
+
+import java.util.*;
 
 public class Arena {
 
     private int trackDistance;
-    private int numberOfTracks;
-    private boolean ended;
-    private Horse[] horses;
-    private Horse[] finishLine;
+    private int numberOfTracks; // TODO: cant have more horses than number of tracks (FIX ME)
+    private BetSystem betSystem;
 
     private Display display;
 
@@ -18,86 +19,80 @@ public class Arena {
 
         this.numberOfTracks = numberOfTracks;
         this.trackDistance = trackDistance;
+        this.betSystem = new BetSystem(); // TODO: make this come from main
     }
 
 
-    public void init() {
+    public void race(Horse[] horses) {
 
-        horses = HorseFactory.createRaceHorses(numberOfTracks);
-        finishLine = new Horse[numberOfTracks];
+        //placeBets(horses); // blocking
 
-        display.initialRender(horses);
+        Set<Horse> ranking = new LinkedHashSet<>();
+        announce(horses);
+        sleep(1000);
 
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        while (!lastHorseHasFinished()) {
-
-            race();
-
+        while (ranking.size() < horses.length) {
+            raceStep(horses);
             display.render(horses);
+
+            for (Horse h : findFinishers(horses)) {
+                ranking.add(h);
+            }
+
+            sleep(500);
         }
 
-        display.finalRender(finishLine);
+        // converting set to array for compatibility reasons. toArray inserts all the elements in the specified array
+        // and returns it with all the elements inserted
+        display.finalRender(ranking.toArray(new Horse[ranking.size()]));
+
     }
 
 
-    private void race() {
+    private void placeBets(Horse[] horses) {
+        betSystem.startBets(horses);
+    }
+
+
+    private void raceStep(Horse[] horses) {
 
         for (Horse horse : horses) {
-
-            ended = hasFinished(horse);
-
             horse.run();
 
-            buildFinishLine(horse);
+            if (horse.getDistance() >= this.trackDistance) {
+                horse.setDistance(this.trackDistance);
+            }
 
             //System.out.println("Track " + horse.getTrack() + " - " + horse.getName() + " distance is " + horse.getDistance());
         }
     }
 
 
-    private boolean lastHorseHasFinished() {
+    private List<Horse> findFinishers(Horse[] horses) {
 
-        int horsesFinished = 0;
+        List<Horse> finishers = new LinkedList<>();
 
-        for (Horse horse : horses) {
+        for (Horse h : horses) {
 
-            if (hasFinished(horse)) {
-                horsesFinished += 1;
+            if (h.getDistance() >= this.trackDistance) {
+                finishers.add(h);
             }
         }
 
-        return horsesFinished >= horses.length;
+        return finishers;
     }
 
 
-    private void buildFinishLine(Horse horse) {
+    private void announce(Horse[] horses) {
+        display.initialRender(horses);
+    }
 
-        if (horse.getDistance() >= trackDistance) {
-
-            horse.setDistance(trackDistance);
-
-            if (!ended) {
-
-                for (int i = 0; i < finishLine.length; i++) {
-
-                    if (finishLine[i] == null) {
-
-                        finishLine[i] = horse;
-                        break;
-                    }
-                }
-            }
+    private void sleep(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-    }
-
-
-    private boolean hasFinished(Horse horse) {
-        return horse.getDistance() >= trackDistance;
     }
 
 

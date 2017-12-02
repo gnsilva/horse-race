@@ -3,15 +3,16 @@ package org.academiadecodigo.horserace.horse;
 public class HorseFactory {
 
 
-    public static Horse[] createRaceHorses(int arenaTracks) {
+    public static Horse[] createRaceHorses(int chooseNumberOfHorses) {
 
         String[] championshipHorses = {"Pizza", "Beer", "Sócio", "Bull Balls", "Dirty Harry", "Apache", "BBQ", "Billy the Kid",
                 "HangMan", "Jalapeño", "Rambo", "Xtreme", "Victory"};
 
-        Horse[] horses = new Horse[arenaTracks];
+
+        Horse[] horses = new Horse[chooseNumberOfHorses];
 
 
-        for (int i = 0; i < arenaTracks; i++) {
+        for (int i = 0; i < chooseNumberOfHorses; i++) {
 
             double randomHorseType = Math.random();
 
