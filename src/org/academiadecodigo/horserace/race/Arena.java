@@ -25,7 +25,10 @@ public class Arena {
 
     public void race(Horse[] horses) {
 
-        //placeBets(horses); // blocking
+        placeBets(horses);
+
+        sleep(30000);
+        // blocking
 
         Set<Horse> ranking = new LinkedHashSet<>();
         announce(horses);

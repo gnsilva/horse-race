@@ -1,6 +1,8 @@
 package org.academiadecodigo.horserace.horse;
 
-public abstract class Horse {
+import java.util.Map;
+
+public abstract class Horse{
 
     private String name;
     protected double distance = 0;
