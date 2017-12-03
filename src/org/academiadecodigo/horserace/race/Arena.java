@@ -30,11 +30,15 @@ public class Arena {
         placeBets(horsesRunning); // blocking
 
         Set<Horse> ranking = new LinkedHashSet<>();
+
         announce(horsesRunning);
+
         sleep(1000);
 
         while (ranking.size() < horsesRunning.length) {
+
             raceStep(horsesRunning);
+
             display.render(horsesRunning);
 
             for (Horse h : findFinishers(horsesRunning)) {
@@ -64,8 +68,6 @@ public class Arena {
             if (horse.getDistance() >= this.trackDistance) {
                 horse.setDistance(this.trackDistance);
             }
-
-            //System.out.println("Track " + horse.getTrack() + " - " + horse.getName() + " distance is " + horse.getDistance());
         }
     }
 
@@ -83,6 +85,7 @@ public class Arena {
 
         return finishers;
     }
+
 
     private Horse[] checkIfHorsesFitArenaSize(Horse[] horses) {
 
@@ -103,8 +106,10 @@ public class Arena {
 
 
     private void announce(Horse[] horses) {
+
         display.initialRender(horses);
     }
+
 
     private void sleep(int ms) {
         try {
@@ -118,4 +123,5 @@ public class Arena {
     public void setDisplay(Display display) {
         this.display = display;
     }
+
 }

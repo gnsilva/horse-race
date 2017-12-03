@@ -41,7 +41,7 @@ public class BetSystem {
 
 
             // Setup the menu prompt message
-            horseMenuScanner.setMessage("List of race horses and respective bet amounts\n\n1st step - Choose a horse to bet on (from 1 to 5):");
+            horseMenuScanner.setMessage("List of race horses and respective bet amounts\n\n1st step - Pick a horse to bet on (from 1 to " + bets.size() + "):");
 
             horseToBetOption = prompt.getUserInput(horseMenuScanner);
 
@@ -66,7 +66,8 @@ public class BetSystem {
         return bets;
     }
 
-    public String[] createMenuOptions(Map<Horse, Integer> map, int option, int value) {
+
+    private String[] createMenuOptions(Map<Horse, Integer> map, int option, int value) {
 
         int i = 0;
 
@@ -78,12 +79,23 @@ public class BetSystem {
                 value = 0;
             }
 
-            options[i] = "Track nr." + entry.getKey().getTrack() + " => " + entry.getKey().getName() + " - " + (entry.getValue() + value) + " €";
+            options[i] = formatString("Track nr." + entry.getKey().getTrack() + " => " + entry.getKey().getName(), 25) + " -   " + (entry.getValue() + value) + " €";
 
             i++;
         }
 
         return options;
+    }
+
+
+    private String formatString(String string, int size) {
+
+        for (int i = string.length(); i < size; i++) {
+
+            string += " ";
+        }
+
+        return string;
     }
 
 
