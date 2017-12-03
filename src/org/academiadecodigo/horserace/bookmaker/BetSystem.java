@@ -19,25 +19,34 @@ public class BetSystem {
 
         createMapWithHorseBets(horses);
 
-
         // Create a new prompt attached to standard input/output
         Prompt prompt = new Prompt(System.in, System.out);
 
-        // Define some options for the menu
+        // Define options for the 1st menu
         String[] anyMoreBetsOptions = {"Yes", "No"};
 
         // Instantiate menu and integer input scanners
-        MenuInputScanner horseMenuScanner = new MenuInputScanner(createMenuOptions(bets));
         MenuInputScanner anyMoreBetsScanner = new MenuInputScanner(anyMoreBetsOptions);
-        IntegerRangeInputScanner betValueScanner = new IntegerRangeInputScanner(1, 1000);
 
-        // Setup the menu prompt message
-        horseMenuScanner.setMessage("List of race horses and respective total bet amounts\n\nChoose a horse to bet on (from 1 to 5):");
+        while (true) {
 
-        System.out.println("\nYou´ve picked horse nr. " + prompt.getUserInput(horseMenuScanner) + "\n\nPlace your bet:");
+            anyMoreBetsScanner.setMessage("Any bets?");
+            if (prompt.getUserInput(anyMoreBetsScanner) == 2) {
+                break;
+            }
 
-        prompt.getUserInput(betValueScanner);
+            MenuInputScanner horseMenuScanner = new MenuInputScanner(createMenuOptions(bets));
+            IntegerRangeInputScanner betValueScanner = new IntegerRangeInputScanner(1, 10);
 
+
+            // Setup the menu prompt message
+            horseMenuScanner.setMessage("List of race horses and respective bet amounts\n\n1st step - Choose a horse to bet on (from 1 to 5):");
+
+            System.out.println("\nYou´ve picked horse nr. " + prompt.getUserInput(horseMenuScanner) + "\n\n2nd step - Place a bet (€)\n");
+
+            betAmount = prompt.getUserInput(betValueScanner);
+
+        }
 
     }
 

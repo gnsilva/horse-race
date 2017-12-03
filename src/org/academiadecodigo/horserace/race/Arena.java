@@ -27,7 +27,7 @@ public class Arena {
 
         placeBets(horses);
 
-        sleep(30000);
+        //sleep(30000);
         // blocking
 
         Set<Horse> ranking = new LinkedHashSet<>();
