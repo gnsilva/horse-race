@@ -12,7 +12,8 @@ public class BetSystem {
 
 
     private Map<Horse, Integer> bets;
-    private Integer betAmount = 0;
+    private int betAmount = 0;
+    private int horseToBetOption = 0;
 
 
     public void startBets(Horse[] horses) {
@@ -35,16 +36,19 @@ public class BetSystem {
                 break;
             }
 
-            MenuInputScanner horseMenuScanner = new MenuInputScanner(createMenuOptions(bets));
+            MenuInputScanner horseMenuScanner = new MenuInputScanner(createMenuOptions(bets, horseToBetOption, betAmount));
             IntegerRangeInputScanner betValueScanner = new IntegerRangeInputScanner(1, 10);
 
 
             // Setup the menu prompt message
             horseMenuScanner.setMessage("List of race horses and respective bet amounts\n\n1st step - Choose a horse to bet on (from 1 to 5):");
 
-            System.out.println("\nYou´ve picked horse nr. " + prompt.getUserInput(horseMenuScanner) + "\n\n2nd step - Place a bet (€)\n");
+            horseToBetOption = prompt.getUserInput(horseMenuScanner);
+
+            System.out.println("\nYou´ve picked horse nr. " + horseToBetOption + "\n\n2nd step - Place a bet (€)\n");
 
             betAmount = prompt.getUserInput(betValueScanner);
+
 
         }
 
@@ -62,7 +66,7 @@ public class BetSystem {
         return bets;
     }
 
-    public String[] createMenuOptions(Map<Horse, Integer> map) {
+    public String[] createMenuOptions(Map<Horse, Integer> map, int option, int value) {
 
         int i = 0;
 
@@ -70,7 +74,11 @@ public class BetSystem {
 
         for (Map.Entry<Horse, Integer> entry : map.entrySet()) {
 
-            options[i] = "Track nr. " + entry.getKey().getTrack() + ": " + entry.getKey().getName() + " - " + entry.getValue() + " €";
+            if (option != (i + 1)) {
+                value = 0;
+            }
+
+            options[i] = "Track nr." + entry.getKey().getTrack() + " => " + entry.getKey().getName() + " - " + (entry.getValue() + value) + " €";
 
             i++;
         }

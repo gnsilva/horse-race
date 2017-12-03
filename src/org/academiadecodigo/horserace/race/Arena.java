@@ -15,30 +15,29 @@ public class Arena {
     private Display display;
 
 
-    public Arena(int numberOfTracks, int trackDistance) {
+    public Arena(int numberOfTracks, int trackDistance, BetSystem betSystem) {
 
         this.numberOfTracks = numberOfTracks;
         this.trackDistance = trackDistance;
-        this.betSystem = new BetSystem(); // TODO: make this come from main
+        this.betSystem = betSystem; // TODO: make this come from main
     }
 
 
     public void race(Horse[] horses) {
 
-        placeBets(horses);
+        Horse[] horsesRunning = checkIfHorsesFitArenaSize(horses);
 
-        //sleep(30000);
-        // blocking
+        placeBets(horsesRunning); // blocking
 
         Set<Horse> ranking = new LinkedHashSet<>();
-        announce(horses);
+        announce(horsesRunning);
         sleep(1000);
 
-        while (ranking.size() < horses.length) {
-            raceStep(horses);
-            display.render(horses);
+        while (ranking.size() < horsesRunning.length) {
+            raceStep(horsesRunning);
+            display.render(horsesRunning);
 
-            for (Horse h : findFinishers(horses)) {
+            for (Horse h : findFinishers(horsesRunning)) {
                 ranking.add(h);
             }
 
@@ -83,6 +82,23 @@ public class Arena {
         }
 
         return finishers;
+    }
+
+    private Horse[] checkIfHorsesFitArenaSize(Horse[] horses) {
+
+        if (horses.length > numberOfTracks) {
+
+            Horse[] lessHorses = new Horse[numberOfTracks];
+
+            for (int i = 0; i < lessHorses.length; i++) {
+
+                lessHorses[i] = horses[i];
+            }
+
+            return lessHorses;
+        }
+
+        return horses;
     }
 
 
